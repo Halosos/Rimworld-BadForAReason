@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<JobDef>
+		<defName>BFAREmptyBedCommode</defName>
+		<driverClass>BadForAReason.JobDriver_emptyBedCommode</driverClass>
+		<reportString>emptying TargetA</reportString>
+	</JobDef>
+	
+</Defs>

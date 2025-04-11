@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+
+<Defs>
+	<ThingDef Name="BFARBedStuff" ParentName="BasicBedBase" Abstract="True">
+		<thingClass>BadForAReason.Building_BedCommode</thingClass>
+		<altitudeLayer>Building</altitudeLayer>
+		<passability>PassThroughOnly</passability>
+		<size>(1,2)</size>
+		<fillPercent>0.4</fillPercent>
+		<leaveResourcesWhenKilled>true</leaveResourcesWhenKilled>
+		<pathCost>60</pathCost>
+		<rotatable>true</rotatable>
+		<building>
+			<buildingTags>
+				<li>Bed</li>
+			</buildingTags>
+		</building>
+		<castEdgeShadows>True</castEdgeShadows>
+		<minifiedDef>MinifiedThing</minifiedDef>
+		<designationCategory>Hygiene</designationCategory>
+		<category>Building</category>
+		<placeWorkers>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
+		</placeWorkers>
+		<canOverlapZones>false</canOverlapZones>
+	</ThingDef>
+
+	<ThingDef Name="BFARBedcommodes" ParentName="BFARBedStuff" Abstract="True">
+
+		<drawPlaceWorkersWhileSelected>true</drawPlaceWorkersWhileSelected>
+		<placeWorkers>
+			<li>DubsBadHygiene.PlaceWorker_SewageGrid</li>
+		</placeWorkers>
+		<thingCategories>
+			<li>BuildingsHygiene</li>
+		</thingCategories>
+		<socialPropernessMatters>false</socialPropernessMatters>
+		<building>
+			<ai_chillDestination>false</ai_chillDestination>
+		</building>
+		<tickerType>Rare</tickerType>
+		
+	</ThingDef>
+
+	<ThingDef ParentName="BFARBedcommodes">
+		<defName>BFARBedCommode</defName>
+		<label>bed commode</label>
+		<description>A bed with a commode built into it. Must be emptied manually, or can be plumbed.\n14L per use</description>
+		<comps>
+			<li Class="CompProperties_AssignableToPawn">
+				<drawAssignmentOverlay>true</drawAssignmentOverlay>
+				<compClass>CompAssignableToPawn_Bed</compClass>
+			</li>
+			<li Class="DubsBadHygiene.CompProperties_Pipe">
+				<mode>Sewage</mode>
+			</li>
+			<li Class="BadForAReason.CompProperties_BFARSewageHandler">
+				<compClass>BadForAReason.CompBFARSewageHandler</compClass>
+				<capacity>500</capacity>
+			</li>
+		</comps>
+		<graphicData>
+			<texPath>Buildings/BedCommode/BedCommode</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<shaderType>CutoutComplex</shaderType>
+			<drawSize>(2,2)</drawSize>
+		</graphicData>
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>800</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<Beauty>-10</Beauty>
+			<Cleanliness>-10</Cleanliness>
+			<Mass>50</Mass>
+			<BedRestEffectiveness>0.950</BedRestEffectiveness>
+			<Comfort>0.5</Comfort>
+			<ImmunityGainSpeedFactor>1.04</ImmunityGainSpeedFactor>
+			<SurgerySuccessChanceFactor>0.95</SurgerySuccessChanceFactor>
+			<BirthRitualQualityOffset MayRequire="Ludeon.RimWorld.Biotech">1.5</BirthRitualQualityOffset>
+		</statBases>
+		<stuffCategories>
+			<li>Metallic</li>
+			<li>Woody</li>
+			<li>Stony</li>
+		</stuffCategories>
+		<costStuffCount>50</costStuffCount>
+		<defaultStuff>WoodLog</defaultStuff>
+		<castEdgeShadows>True</castEdgeShadows>
+		<building>
+			<bed_showSleeperBody>True</bed_showSleeperBody>
+			<bed_healPerDay>4</bed_healPerDay>
+			<paintable>true</paintable>
+		</building>
+		<uiIconScale>0.90</uiIconScale>
+		<researchPrerequisites>
+			<li MayRequire="dbhlitemode">ModernFixtures</li>
+			<li>ComplexFurniture</li>
+		</researchPrerequisites>
+		
+	</ThingDef>
+</Defs>

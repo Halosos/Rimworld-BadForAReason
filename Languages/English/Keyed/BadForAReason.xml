@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+	<BedpanCapacity>Bedpan: {0}</BedpanCapacity>
+	<BedpanFull>Bedpan is full, empty now!</BedpanFull>
+	<BedpanIsEmpty>Not enough waste to empty</BedpanIsEmpty>
+	<BedpanClean>Prioritize emptying bedpan</BedpanClean>
+
+</LanguageData>

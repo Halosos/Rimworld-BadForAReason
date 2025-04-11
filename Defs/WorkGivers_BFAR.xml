@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<WorkGiverDef>
+		<defName>BFAREmptyBedCommode</defName>
+		<label>Clean bed pan</label>
+		<giverClass>BadForAReason.WorkGiver_emptyBedCommode</giverClass>
+		<workType>Cleaning</workType>
+		<verb>clean</verb>
+		<gerund>cleaning</gerund>
+		<priorityInType>51</priorityInType>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+	
+</Defs>

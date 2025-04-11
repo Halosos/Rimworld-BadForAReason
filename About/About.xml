@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ModMetaData>
+	<name>Addon for Dubs Bad Hygiene: Bad For a Reason</name>
+	<packageId>Halosos.BadForAReason</packageId>
+	<author>Halosos</author>
+	<description>A small addon for Dubs Bad Hygiene, mostly things I felt were missing, with a couple extra bits for fun.</description>
+
+<modVersion>0.1</modVersion>
+
+<supportedVersions>
+  <li>1.5</li>
+</supportedVersions>
+
+<modDependencies>
+  <li>
+    <packageId>Dubwise.DubsBadHygiene</packageId>
+    <displayName>Dubs Bad Hygiene</displayName>
+    <steamWorkshopUrl>steam://url/CommunityFilePage/836308268</steamWorkshopUrl>
+  </li>
+</modDependencies>
+</ModMetaData>
