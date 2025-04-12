@@ -5,3 +5,10 @@ H:\Rimworld mods\BadForAReason\Assemblies\BadForAReason.pdb
 H:\Rimworld mods\BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.dll
 H:\Rimworld mods\BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.pdb
 H:\Rimworld mods\BadForAReason\Source\BadForAReason\obj\Debug\BadForAR.4A1822AC.Up2Date
+H:\Rimworld mods\Rimworld-BadForAReason\Assemblies\BadForAReason.dll
+H:\Rimworld mods\Rimworld-BadForAReason\Assemblies\BadForAReason.pdb
+H:\Rimworld mods\Rimworld-BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.csproj.AssemblyReference.cache
+H:\Rimworld mods\Rimworld-BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.csproj.CoreCompileInputs.cache
+H:\Rimworld mods\Rimworld-BadForAReason\Source\BadForAReason\obj\Debug\BadForAR.4A1822AC.Up2Date
+H:\Rimworld mods\Rimworld-BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.dll
+H:\Rimworld mods\Rimworld-BadForAReason\Source\BadForAReason\obj\Debug\BadForAReason.pdb

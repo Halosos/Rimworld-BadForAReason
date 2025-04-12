@@ -48,8 +48,6 @@ namespace BadForAReason
             {
                 throw new System.MissingFieldException(nameof (CompSewageHandler));
             }
-
-            
         }
 
         public override void TickRare()
@@ -63,11 +61,10 @@ namespace BadForAReason
                 
                 if (this.sewageHandler.Blocked == false)
                 {
-                    Verse.Log.Message("Blocked was false");
+
                     if (needBladder.CurLevel < 0.75f)
                     {
-                        
-                        
+
                         PawnStatController.AdjustBladder(0.25f, pawn);
                         PawnStatController.AdjustHygiene(-0.01f, pawn);
                         
@@ -77,8 +74,7 @@ namespace BadForAReason
                         if (pipe?.pipeNet?.Sewers?.Any(h => h.parent != this) == true) // is there a place to dump sewage?
                         {
 
-
-                            pipe.pipeNet.PushSewage(ModOption.FlushSize.Val + sewage / ModOption.FlushSize.Val);
+                            pipe.pipeNet.PushSewage(sewage);
                             
                             sewage = 0f;
                         }
@@ -133,25 +129,28 @@ namespace BadForAReason
         public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
         {
             
-            foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
-            {
-                yield return floatMenuOption;
-            }
-
+            //foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
+            //{
+            //    yield return floatMenuOption;
+            //}
+            
             if (!Helper_Methods.JobEligibility(this, out string floatDeniedReason))
             {
+                
                 yield return new FloatMenuOption(floatDeniedReason.Translate(),null);
                 yield break;
             }
 
             if (sewage > 1)
             {
-                yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("BedpanClean".Translate(),
-                    () =>
-                    {
-                        Job job = JobMaker.MakeJob(BFARDef.BFAREmptyBedCommode, this, pawn);
-                        pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                    }), pawn, this);
+                //yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("BedpanClean".Translate(),
+                    //() =>
+                    //{
+                        //Log.Message("Job demanded: " + Label);
+                        //Job job = JobMaker.MakeJob(BFARDef.BFAREmptyBedCommode, this, pawn);
+                        //pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+                    //}), pawn, this);
+                Log.Message("Job demanded: " + Label);
             }
             else
             {

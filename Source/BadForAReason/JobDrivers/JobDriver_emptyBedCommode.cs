@@ -36,7 +36,6 @@ namespace BadForAReason
                 thing.stackCount = Mathf.CeilToInt(building_BedCommode.Sewage);
                 GenPlace.TryPlaceThing(thing, pawn.Position, pawn.Map, ThingPlaceMode.Near);
                 building_BedCommode.sewage = 0f;
-                Verse.Log.Message("BFAR cleaned!");
             });
             yield return toil;
         }
