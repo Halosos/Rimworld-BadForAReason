@@ -60,8 +60,9 @@
 				<compClass>BadForAReason.CompBFARSewageHandler</compClass>
 				<capacity>500</capacity>
 			</li>
-			<li Class="BadForAReason.CompProperties_BFARBlockage"/>
+			<li Class="DubsBadHygiene.CompProperties_Blockage"/>
 		</comps>
+		<drawerType>MapMeshAndRealTime</drawerType>
 		<graphicData>
 			<texPath>Buildings/BedCommode/BedCommode</texPath>
 			<graphicClass>Graphic_Multi</graphicClass>

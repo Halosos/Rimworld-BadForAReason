@@ -13,8 +13,7 @@ using DubsBadHygiene;
 
 namespace BadForAReason
 {
-
-    public class Building_BedCommode : Building_Bed, ISewageContainer
+    public class Building_ComaBed : Building_Bed
     {
         CompPipe pipe;
         CompSewageHandler sewageHandler;
@@ -33,7 +32,8 @@ namespace BadForAReason
 
         private float _amountToDump;
 
-        
+        public virtual bool DrawBrokenPipe => true;
+        public bool brokenPipe;
         
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -66,51 +66,20 @@ namespace BadForAReason
                 Need_Bladder needBladder = pawn.needs.TryGetNeed<Need_Bladder>();
 
                 
-                if (this.sewageHandler.Blocked == false)
+                if (this.sewageHandler.Blocked == false && pipe?.pipeNet?.Sewers?.Any(h => h.parent != this) == true)
                 {
 
                     if (needBladder.CurLevel < 0.75f)
                     {
 
                         PawnStatController.AdjustBladder(0.25f, pawn);
-                        PawnStatController.AdjustHygiene(-0.01f, pawn);
                         
                         sewage += (14f * ModOption.FlushSize.Val);
                         
+                        pipe.pipeNet.PushSewage(sewage);
                         
-                        if (pipe?.pipeNet?.Sewers?.Any(h => h.parent != this) == true) // is there a place to dump sewage?
-                        {
-
-                            pipe.pipeNet.PushSewage(sewage);
-                            
-                            sewage = 0f;
-                        }
-                        else
-                        {
-
-                            
-                            if (sewage >= sewageLimit) // Too much shit
-                            {
-                                _amountToDump = sewage - sewageLimit;
-
-                                pipe.MapComp.SewageGrid.AddAt(GetFootSlotPos(0), _amountToDump, true, true, null);
-
-                                sewage = sewageLimit;
-
-                            }
-                        }
-                    }
-                }
-                else
-                {
-                    if (needBladder.CurLevel < 0.75f)
-                    {
-                        PawnStatController.AdjustBladder(0.25f, pawn);
-                        PawnStatController.AdjustHygiene(-0.05f, pawn);
-                    
-                        _amountToDump = 14f * ModOption.FlushSize.Val;
-
-                        pipe.MapComp.SewageGrid.AddAt(GetFootSlotPos(0), _amountToDump, true, true, null);
+                        sewage = 0f;
+                        
                     }
                 }
             }
@@ -153,6 +122,5 @@ namespace BadForAReason
                 HelperMethods.DrawOverlay(this, BFAR_OverlayTypes.Blocked);
             }
         }
-        
     }
 }

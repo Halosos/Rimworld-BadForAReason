@@ -13,9 +13,13 @@ using DubsBadHygiene;
 namespace BadForAReason
 {
     // Code that makes other code work. 
-    
-    
-    
+
+
+    public enum BFAR_OverlayTypes
+    {
+        Blocked,
+        Default
+    }
     
     
     public interface ISewageContainer // Home of sewage variables

@@ -56,6 +56,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="Buildings\Building_ComaBed.cs" />
         <Compile Include="HelperMethods.cs" />
         <Compile Include="BFARDef.cs" />
         <Compile Include="Buildings\Bed Commode.cs" />
