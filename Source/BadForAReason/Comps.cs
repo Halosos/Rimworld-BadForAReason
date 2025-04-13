@@ -13,6 +13,34 @@ using DubsBadHygiene;
 namespace BadForAReason
 {
     // comps
+    public class CompBFARBlockage : CompBlockage
+    {
+        public override IEnumerable<Gizmo> CompGetGizmosExtra()
+        {
+            foreach (Gizmo item in base.CompGetGizmosExtra())
+            {
+                yield return item;
+            }
+            if (DebugSettings.godMode)
+            {
+                yield return new Command_Action
+                {
+                    defaultLabel = "block",
+                    defaultDesc = "",
+                    action = bog
+                };
+            }
+        }
+    
+    }
+
+    public class CompProperties_BFARBlockage : CompProperties_Blockage
+    {
+        public CompProperties_BFARBlockage()
+        {
+            compClass = typeof(CompBFARBlockage);
+        }
+    }
     
     public class CompBFARSewageHandler : CompSewageHandler // I'm in your comp, stealin' your fill button
     {
@@ -22,10 +50,7 @@ namespace BadForAReason
         {
             if (this.parent is ISewageContainer container)
             {
-                
                 container.Sewage = container.SewageLimit;
-                
-                Log.Message("Sewage limit set to: " + container.SewageLimit);
             }
 
         }

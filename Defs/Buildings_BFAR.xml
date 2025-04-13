@@ -60,6 +60,7 @@
 				<compClass>BadForAReason.CompBFARSewageHandler</compClass>
 				<capacity>500</capacity>
 			</li>
+			<li Class="BadForAReason.CompProperties_BFARBlockage"/>
 		</comps>
 		<graphicData>
 			<texPath>Buildings/BedCommode/BedCommode</texPath>

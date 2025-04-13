@@ -48,6 +48,11 @@ namespace BadForAReason
             {
                 throw new System.MissingFieldException(nameof (CompSewageHandler));
             }
+
+            if (blockage == null)
+            {
+                throw new System.MissingFieldException(nameof (CompBlockage));
+            }
         }
 
         public override void TickRare()
@@ -94,6 +99,18 @@ namespace BadForAReason
                         }
                     }
                 }
+                else
+                {
+                    if (needBladder.CurLevel < 0.75f)
+                    {
+                        PawnStatController.AdjustBladder(0.25f, pawn);
+                        PawnStatController.AdjustHygiene(-0.05f, pawn);
+                    
+                        _amountToDump = 14f * ModOption.FlushSize.Val;
+
+                        pipe.MapComp.SewageGrid.AddAt(GetFootSlotPos(0), _amountToDump, true, true, null);
+                    }
+                }
             }
         }
         
@@ -126,38 +143,44 @@ namespace BadForAReason
             return GenText.TrimEndNewlines(stringBuilder.ToString());
         }
 
-        public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
-        {
-            
-            //foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
-            //{
-            //    yield return floatMenuOption;
-            //}
-            
-            if (!Helper_Methods.JobEligibility(this, out string floatDeniedReason))
-            {
-                
-                yield return new FloatMenuOption(floatDeniedReason.Translate(),null);
-                yield break;
-            }
-
-            if (sewage > 1)
-            {
-                //yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("BedpanClean".Translate(),
-                    //() =>
-                    //{
-                        //Log.Message("Job demanded: " + Label);
-                        //Job job = JobMaker.MakeJob(BFARDef.BFAREmptyBedCommode, this, pawn);
-                        //pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
-                    //}), pawn, this);
-                Log.Message("Job demanded: " + Label);
-            }
-            else
-            {
-                yield return new FloatMenuOption("BedpanIsEmpty".Translate(),null);
-                yield break;
-            }
-
-        }
+        // public override IEnumerable<FloatMenuOption> GetFloatMenuOptions(Pawn pawn)
+        // {
+        //     
+        //     foreach (FloatMenuOption floatMenuOption in base.GetFloatMenuOptions(pawn))
+        //     {
+        //         yield return floatMenuOption;
+        //     }
+        //     
+        //     if (!Helper_Methods.JobEligibility(this, out string floatDeniedReason))
+        //     {
+        //         
+        //         yield return new FloatMenuOption(floatDeniedReason.Translate(),null);
+        //         yield break;
+        //     }
+        //     
+        //     
+        //     
+        //     if (sewage > 1)
+        //     {
+        //         yield return FloatMenuUtility.DecoratePrioritizedTask(new FloatMenuOption("BedpanClean".Translate(),
+        //             () =>
+        //             {
+        //                 
+        //                 Job job = JobMaker.MakeJob(BFARDef.BFAREmptyBedCommode, this, pawn);
+        //                 pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+        //             }), pawn, this);
+        //     }
+        //     else if (pawn.jobs.curJob != null && pawn.jobs.curJob.def == BFARDef.BFAREmptyBedCommode)
+        //     {
+        //         yield return new FloatMenuOption("AlreadyBedpanClean".Translate(), null);
+        //         yield break;
+        //     }
+        //     else
+        //     {
+        //         yield return new FloatMenuOption("BedpanIsEmpty".Translate(),null);
+        //         yield break;
+        //     }
+        //
+        // }
     }
 }

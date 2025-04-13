@@ -25,18 +25,19 @@ namespace BadForAReason
                     if (item is Building_BedCommode wardenBuilding_BedCommode)
                     {
                         yield return wardenBuilding_BedCommode;
+                        yield break;
                     }
                 }
-
                 yield break;
             }
 
-            IEnumerable<CompSewageHandler> enumerable = pawn.Map.PipeNet().PipeNets.SelectMany((PlumbingNet x) => x.Sewers); // may cause issues later
+            IEnumerable<CompSewageHandler> enumerable = pawn.Map.PipeNet().PipeNets.SelectMany((PlumbingNet x) => x.Sewers); 
+            
             foreach (Thing item2 in pawn.Map.listerThings.ThingsOfDef(BFARDef.BFARBedCommode))
             {
-                if (item2 is Building_BedCommode nonWardenBuilding_BedCommode)
+                if (item2 is Building_BedCommode building_BedCommode)
                 {
-                    yield return nonWardenBuilding_BedCommode;
+                    yield return building_BedCommode;
                 }
             }
         }
@@ -56,6 +57,8 @@ namespace BadForAReason
         {
             if (t is Building_BedCommode building_BedCommode)
             {
+                bool isPrisonBed = building_BedCommode.ForPrisoners;
+                
                 if (forced && building_BedCommode.sewage < 10f)
                 {
                     return false;
@@ -64,6 +67,14 @@ namespace BadForAReason
                 if (!forced && building_BedCommode.sewage < building_BedCommode.sewageLimit * 0.3f)
                 {
                     return false;
+                }
+
+                if (def.workType == WorkTypeDefOf.Warden)
+                {
+                    if (pawn.WorkTypeIsDisabled(WorkTypeDefOf.Warden) || !isPrisonBed)
+                    {
+                        return false;
+                    }
                 }
             }
 

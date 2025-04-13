@@ -1,13 +1,32 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <Defs>
-
+<!-- I DISLIKE DUBS CODE. NOTHING AGAINST THE GUY BUT I NEED TO VENT ABOUT THE CODE. -->
+<!-- I AM NOT THAT SKILLED AT THIS, BUT WHY ON EARTH ARE THERE NO FUCKING -->
+<!-- COMMENTS EXPLAINING THAT THE PITLATRINE AND SEPTICTANK SHARE A SHITELOAD OF CODE?! -->
+<!-- I WENT DIVING THROUGH HIS CODE FOR LIKE 2 DAYS TO UNDERSTAND HOW IT WORKED! -->
+<!-- ALL THE SHARED CODE IS JUST CALLED SEPTICTANK. NO MENTION OF PITLATRINE. FUCK. -->
+<!-- If you read this, luv u Dubs <3 -->
+<!-- Also, whats up with the philcollins method? -->
 	<WorkGiverDef>
 		<defName>BFAREmptyBedCommode</defName>
 		<label>Clean bed pan</label>
 		<giverClass>BadForAReason.WorkGiver_emptyBedCommode</giverClass>
 		<workType>Cleaning</workType>
-		<verb>clean</verb>
-		<gerund>cleaning</gerund>
+		<verb>empty</verb>
+		<gerund>emptying</gerund>
+		<priorityInType>51</priorityInType>
+		<requiredCapacities>
+			<li>Manipulation</li>
+		</requiredCapacities>
+	</WorkGiverDef>
+	
+	<WorkGiverDef> 
+		<defName>BFARWardenEmptyBedCommode</defName>
+		<label>Clean bed pan</label>
+		<giverClass>BadForAReason.WorkGiver_emptyBedCommode</giverClass>
+		<workType>Warden</workType>
+		<verb>empty</verb>
+		<gerund>emptying</gerund>
 		<priorityInType>51</priorityInType>
 		<requiredCapacities>
 			<li>Manipulation</li>

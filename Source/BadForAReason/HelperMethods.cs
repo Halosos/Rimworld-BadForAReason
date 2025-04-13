@@ -14,7 +14,6 @@ namespace BadForAReason
 {
     public class Helper_Methods
     {
-
         
         
 
@@ -55,6 +54,25 @@ namespace BadForAReason
                 return false;
             }
             
+            if (selPawn.CurJobDef.defName == BFARDef.BFAREmptyBedCommode.defName)
+            {
+                outMessage = "AlreadyBedpanClean";
+
+                return false;
+            }
+
+            if ((selPawn.story.DisabledWorkTagsBackstoryAndTraits & WorkTags.Cleaning) != 0)
+            {
+                outMessage = "CannotPrioritizeWorkTypeDisabled";
+                
+                return false;
+            }
+            if (!selPawn.workSettings.WorkIsActive(WorkTypeDefOf.Cleaning))
+            {
+                outMessage = "CannotPrioritizeNotAssignedToWorkType";
+                
+                return false;
+            }
             
             outMessage = "";
             return true;

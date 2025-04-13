@@ -52,6 +52,7 @@
         </Reference>
         <Reference Include="UnityEngine.CoreModule">
           <HintPath>D:\1TBSTEAMBACKUP\Steam\SteamApps\common\RimWorld\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+          <Private>False</Private>
         </Reference>
     </ItemGroup>
     <ItemGroup>

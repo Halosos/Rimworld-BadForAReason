@@ -5,5 +5,8 @@
 	<BedpanFull>Bedpan is full, empty now!</BedpanFull>
 	<BedpanIsEmpty>Not enough waste to empty</BedpanIsEmpty>
 	<BedpanClean>Prioritize emptying bedpan</BedpanClean>
+	<AlreadyBedpanClean>Already emptying</AlreadyBedpanClean>
+	
+	
 
 </LanguageData>
