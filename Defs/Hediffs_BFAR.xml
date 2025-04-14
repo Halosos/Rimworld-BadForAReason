@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+	<HediffDef>
+		<defName>HaveCatheter</defName>
+		<label>haveCatheter</label>
+		<description>A medical catheter has been inserted to allow easy and effortless waste removal, if a little uncomfortable and painful.</description>
+		<everCurableByItem>false</everCurableByItem>
+		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
+		<isBad>false</isBad>
+		<stages>
+			<li>
+				<painOffset>0.01</painOffset>
+			</li>
+		</stages>
+	</HediffDef>
+
+</Defs>
