@@ -18,6 +18,7 @@ namespace BadForAReason
     public enum BFAR_OverlayTypes
     {
         Blocked,
+        NoPipe,
         Default
     }
     

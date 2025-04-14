@@ -38,21 +38,21 @@ namespace BadForAReason
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
             base.SpawnSetup(map, respawningAfterLoad);
-            this.pipe = GetComp<CompPipe>();
-            this.sewageHandler = GetComp<CompSewageHandler>();
-            this.blockage = GetComp<CompBlockage>();
+            pipe = GetComp<CompPipe>();
+            sewageHandler = GetComp<CompSewageHandler>();
+            blockage = GetComp<CompBlockage>();
             if (pipe == null)
             {
-                throw new System.MissingFieldException(nameof (CompPipe));
+                throw new MissingFieldException(nameof (CompPipe));
             }
             if (sewageHandler == null)
             {
-                throw new System.MissingFieldException(nameof (CompSewageHandler));
+                throw new MissingFieldException(nameof (CompSewageHandler));
             }
 
             if (blockage == null)
             {
-                throw new System.MissingFieldException(nameof (CompBlockage));
+                throw new MissingFieldException(nameof (CompBlockage));
             }
         }
         
@@ -66,7 +66,7 @@ namespace BadForAReason
                 Need_Bladder needBladder = pawn.needs.TryGetNeed<Need_Bladder>();
 
                 
-                if (this.sewageHandler.Blocked == false)
+                if (sewageHandler.Blocked == false)
                 {
 
                     if (needBladder.CurLevel < 0.75f)
@@ -107,7 +107,9 @@ namespace BadForAReason
                     {
                         PawnStatController.AdjustBladder(0.25f, pawn);
                         PawnStatController.AdjustHygiene(-0.05f, pawn);
-                    
+                        
+                        pawn.needs.mood.thoughts.memories.TryGainMemory(DefDatabase<ThoughtDef>.GetNamed("SoiledSelf"));
+                        
                         _amountToDump = 14f * ModOption.FlushSize.Val;
 
                         pipe.MapComp.SewageGrid.AddAt(GetFootSlotPos(0), _amountToDump, true, true, null);

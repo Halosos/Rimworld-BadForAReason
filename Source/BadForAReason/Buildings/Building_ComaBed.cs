@@ -27,10 +27,6 @@ namespace BadForAReason
             get => sewage;
             set => sewage = value;
         }
-        
-        public float SewageLimit => sewageLimit;
-
-        private float _amountToDump;
 
         public virtual bool DrawBrokenPipe => true;
         public bool brokenPipe;
@@ -82,6 +78,11 @@ namespace BadForAReason
                         
                     }
                 }
+
+                if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("HediffCatheter")))  // make this cleaner later
+                {
+                    pawn.health.AddHediff(HediffDef.Named("HeadiffCatheter"));
+                } 
             }
         }
         
@@ -117,9 +118,13 @@ namespace BadForAReason
         public void PostDraw(Vector3 drawPos, bool flip = false)
         {
             base.DrawAt(drawPos, flip);
-            if (blockage.blocked || blockage == null)
+            if (blockage.blocked)
             {
                 HelperMethods.DrawOverlay(this, BFAR_OverlayTypes.Blocked);
+            }
+            if (pipe.pipeNet.Sewers.Any(h => h.parent != this))
+            {
+                HelperMethods.DrawOverlay(this, BFAR_OverlayTypes.NoPipe);
             }
         }
     }

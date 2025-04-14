@@ -37,6 +37,8 @@ namespace BadForAReason
             {
                 case BFAR_OverlayTypes.Blocked:
                     return GraphicsCache.plumbingBreakdownMat;
+                case BFAR_OverlayTypes.NoPipe:
+                    return GraphicsCache.MissingPipes;
                 default:
                     if (DebugSettings.godMode)
                     {

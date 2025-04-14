@@ -57,6 +57,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Buildings\Building_ComaBed.cs" />
+        <Compile Include="Hediffs\HediffCatheter.cs" />
         <Compile Include="HelperMethods.cs" />
         <Compile Include="BFARDef.cs" />
         <Compile Include="Buildings\Bed Commode.cs" />
@@ -64,7 +65,11 @@
         <Compile Include="JobDrivers\JobDriver_emptyBedCommode.cs" />
         <Compile Include="Properties\AssemblyInfo.cs"/>
         <Compile Include="MiscUtility.cs" />
+        <Compile Include="ThoughtWorkers\ThoughtWorker_HaveCatheter.cs" />
         <Compile Include="WorkGivers\WorkGiver_emptyBedCommode.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="Thoughts\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets"/>
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
