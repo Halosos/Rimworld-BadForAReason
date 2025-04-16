@@ -19,6 +19,12 @@ namespace BadForAReason
         
         public static JobDef BFAREmptyBedCommode;
         
+        public static HediffDef BFARInstalledCatheter;
+        
+        public static ThoughtDef BFARHadCatheter;
+        
+        public static ThoughtDef BFARHaveCatheter;
+        
         static BFARDef()
         {
             DefOfHelper.EnsureInitializedInCtor(typeof(BFARDef));

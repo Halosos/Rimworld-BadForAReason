@@ -33,7 +33,7 @@ namespace BadForAReason
 
         private float _amountToDump;
 
-        
+
         
         public override void SpawnSetup(Map map, bool respawningAfterLoad)
         {
@@ -56,6 +56,8 @@ namespace BadForAReason
             }
         }
         
+        
+        
         public override void TickRare()
         {
             
@@ -65,6 +67,10 @@ namespace BadForAReason
                 Pawn pawn = GetCurOccupant(0);
                 Need_Bladder needBladder = pawn.needs.TryGetNeed<Need_Bladder>();
 
+                if (pawn.health.hediffSet.HasHediff(HediffDef.Named("BFARInstalledCatheter")))
+                {
+                    return;
+                }
                 
                 if (sewageHandler.Blocked == false)
                 {

@@ -2,9 +2,9 @@
 <Defs>
 
 	<HediffDef>
-		<defName>HaveCatheter</defName>
-		<label>haveCatheter</label>
-		<description>A medical catheter has been inserted to allow easy and effortless waste removal, if a little uncomfortable and painful.</description>
+		<defName>BFARInstalledCatheter</defName>
+		<label>installedCatheter</label>
+		<description>A medical catheter has been inserted to allow easy and effortless waste removal, if a little painful and uncomfortable.</description>
 		<everCurableByItem>false</everCurableByItem>
 		<defaultLabelColor>(0.8, 0.8, 0.35)</defaultLabelColor>
 		<isBad>false</isBad>

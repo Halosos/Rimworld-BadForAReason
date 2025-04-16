@@ -6,7 +6,11 @@
 	<BedpanIsEmpty>Not enough waste to empty</BedpanIsEmpty>
 	<BedpanClean>Prioritize emptying bedpan</BedpanClean>
 	<AlreadyBedpanClean>Already emptying</AlreadyBedpanClean>
-	
-	
-
+	<BFARAllowAll>All occupants</BFARAllowAll>
+	<BFARAllowUnconcious>Unconcious occupants</BFARAllowUnconcious>
+	<BFARAllowCanWalk>Occupants that cannot walk</BFARAllowCanWalk>
+	<BFARAllowIll>Occupants who are ill or injured</BFARAllowIll>
+	<BFARManual>Manual selection only</BFARManual>
+	<BFARCatheterActionLabel>Allow catheter in: </BFARCatheterActionLabel>
+	<BFARCatheterCycleDesc>Cycle through modes.</BFARCatheterCycleDesc>
 </LanguageData>

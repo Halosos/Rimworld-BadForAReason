@@ -76,9 +76,38 @@ namespace BadForAReason
             
             return false;
         }
+
         
 
     }
+    
+    public class MapComponent_CatheterCache : MapComponent // tracks pawns who need shit stuck up their hole
+    {
+        public MapComponent_CatheterCache(Map map) : base(map)
+        {
+                
+        }
 
+        private List<Pawn> eligiblePawns = new List<Pawn>();
+            
+        public List<Pawn> EligiblePawns => eligiblePawns;
+
+        public void Clear() => eligiblePawns.Clear();
+
+        public void Add(Pawn pawn)
+        {
+            if (pawn != null && !eligiblePawns.Contains(pawn))
+            {
+                eligiblePawns.Add(pawn);
+            }
+        }
+
+        public void Remove(Pawn pawn)
+        {
+            eligiblePawns.Remove(pawn);
+        }
+            
+        public bool Contains(Pawn pawn) => eligiblePawns.Contains(pawn);
+    }
     
 }

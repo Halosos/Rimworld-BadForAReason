@@ -10,10 +10,13 @@ using RimWorld;
 using UnityEngine;
 using DubsBadHygiene;
 
-namespace BadForAReason.ThoughtWorkers
+namespace BadForAReason 
 {
-    public class ThoughtWorker_HaveCatheter
+    public abstract class ThoughtWorker_HaveCatheter : ThoughtWorker
     {
-        
+        protected override ThoughtState CurrentStateInternal(Pawn pawn)
+        {
+            return pawn.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter);
+        }
     }
 }

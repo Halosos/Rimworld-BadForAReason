@@ -31,7 +31,7 @@ namespace BadForAReason
            Graphics.DrawMesh(MeshPool.plane10, matrix, mat, 0);
         }
 
-        private static Material GetOverlayType(BFAR_OverlayTypes type)
+        private static Material GetOverlayType(BFAR_OverlayTypes type) // pipe warnings
         {
             switch (type)
             {
@@ -51,5 +51,6 @@ namespace BadForAReason
                     
             }
         }
+        
     }
 }

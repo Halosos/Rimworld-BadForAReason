@@ -97,9 +97,79 @@
 		</building>
 		<uiIconScale>0.90</uiIconScale>
 		<researchPrerequisites>
-			<li MayRequire="dbhlitemode">ModernFixtures</li>
+			<li>ModernFixtures</li>
 			<li>ComplexFurniture</li>
 		</researchPrerequisites>
 		
 	</ThingDef>
+	
+	
+	<ThingDef ParentName="BuildingBase">
+		<defName>BFARCatheterMachine</defName>
+		<label>waste support unit</label>
+		<description>A small machine with a catheter and rectal tube for automatic waste extraction from those who are bedridden. It is not comfortable and a bit painful, but mostly free of intervention.\n14L per use</description>
+		
+		<thingClass>THING HERE</thingClass>
+		
+		<comps>
+			<li Class="DubsBadHygiene.CompProperties_Pipe">
+				<mode>Sewage</mode>
+			</li>
+			<li Class="BadForAReason.CompProperties_BFARSewageHandler">
+				<compClass>BadForAReason.CompBFARSewageHandler</compClass>
+			</li>
+			<li Class="DubsBadHygiene.CompProperties_Blockage"/>
+			<li Class="CompProperties_Linkable">
+				<linkFlags>
+					<li>Bed</li>
+				</linkFlags>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>200</basePowerConsumption>
+			</li>
+		</comps>
+		
+		<drawerType>MapMeshAndRealTime</drawerType>
+		
+		<graphicData>
+			<texPath>Buildings/CatheterMachine/CatheterMachine</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<drawSize>(1,1)</drawSize>
+		</graphicData>
+		
+		<statBases>
+			<MaxHitPoints>100</MaxHitPoints>
+			<WorkToBuild>800</WorkToBuild>
+			<Flammability>1.0</Flammability>
+			<Beauty>-5</Beauty>
+			<Cleanliness>1</Cleanliness>
+			<Mass>30</Mass>
+		</statBases>
+
+		<costList>
+			<Steel>60</Steel>
+			<ComponentIndustrial>6</ComponentIndustrial>
+		</costList>
+	
+		<castEdgeShadows>True</castEdgeShadows>
+		
+		<uiIconScale>0.90</uiIconScale>
+		<researchPrerequisites>
+			<li>HospitalBed</li>
+			<li>ComplexFurniture</li>
+		</researchPrerequisites>
+		
+		<building>
+			<canPlaceOverWall>false</canPlaceOverWall>
+		</building>
+		
+		<placeWorkers>
+			<li>BadForAReason.PlaceWorker_MustBeAdjacentToBed</li>
+		</placeWorkers>
+		
+		<designationCategory>Hygiene</designationCategory>
+		
+	</ThingDef>
+	
 </Defs>

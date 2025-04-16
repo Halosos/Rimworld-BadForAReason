@@ -78,10 +78,12 @@ namespace BadForAReason
                         
                     }
                 }
-
-                if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("HediffCatheter")))  // make this cleaner later
+                
+                
+                
+                if (!pawn.health.hediffSet.HasHediff(HediffDef.Named("BFARHaveCatheter")))  // make this cleaner later
                 {
-                    pawn.health.AddHediff(HediffDef.Named("HeadiffCatheter"));
+                    pawn.health.AddHediff(HediffDef.Named("BFARHaveCatheter"));
                 } 
             }
         }
@@ -104,13 +106,9 @@ namespace BadForAReason
             {
                 stringBuilder.AppendLine(Translator.Translate("BlockedDrain"));
             }
-            if (sewage >= sewageLimit)
+            if (pipe.pipeNet.Sewers.Any(h => h.parent != this))
             {
-                stringBuilder.AppendLine(Translator.Translate("BedpanFull"));
-            }
-            else
-            {
-                stringBuilder.AppendLine(TranslatorFormattedStringExtensions.Translate("BedpanCapacity", GenText.ToStringPercent(this.sewage / this.sewageLimit, "0")));
+                stringBuilder.AppendLine(Translator.Translate("MustBePlumbing"));
             }
             return GenText.TrimEndNewlines(stringBuilder.ToString());
         }
