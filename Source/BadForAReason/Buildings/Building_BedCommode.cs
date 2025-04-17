@@ -22,6 +22,8 @@ namespace BadForAReason
 
         public float sewage = 0f;
         public float sewageLimit = 100f;
+
+        
         
         public float Sewage
         {
@@ -71,6 +73,11 @@ namespace BadForAReason
                 {
                     return;
                 }
+
+                if (pipe == null)
+                {
+                    return;
+                }
                 
                 if (sewageHandler.Blocked == false)
                 {
@@ -84,7 +91,7 @@ namespace BadForAReason
                         sewage += (14f * ModOption.FlushSize.Val);
                         
                         
-                        if (pipe?.pipeNet?.Sewers?.Any(h => h.parent != this) == true) // is there a place to dump sewage?
+                        if (pipe.pipeNet.Sewers.Any(h => h.parent != this)) // is there a place to dump sewage?
                         {
 
                             pipe.pipeNet.PushSewage(sewage);
