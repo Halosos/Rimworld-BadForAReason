@@ -109,7 +109,11 @@
 		<label>waste support unit</label>
 		<description>A small machine with a catheter and rectal tube for automatic waste extraction from those who are bedridden. It is not comfortable and a bit painful, but mostly free of intervention.\n14L per use</description>
 		
-		<thingClass>THING HERE</thingClass>
+		<thingClass>BadforAReason.Building_CatheterMachine</thingClass>
+		
+		<thingCategories>
+			<li>BuildingsHygiene</li>
+		</thingCategories>
 		
 		<comps>
 			<li Class="DubsBadHygiene.CompProperties_Pipe">
@@ -119,10 +123,8 @@
 				<compClass>BadForAReason.CompBFARSewageHandler</compClass>
 			</li>
 			<li Class="DubsBadHygiene.CompProperties_Blockage"/>
-			<li Class="CompProperties_Linkable">
-				<linkFlags>
-					<li>Bed</li>
-				</linkFlags>
+			<li Class="CompProperties_Facility">
+				<maxSimultaneous>2</maxSimultaneous>
 			</li>
 			<li Class="CompProperties_Power">
 				<compClass>CompPowerTrader</compClass>

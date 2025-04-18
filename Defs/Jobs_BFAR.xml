@@ -7,4 +7,10 @@
 		<reportString>emptying TargetA</reportString>
 	</JobDef>
 	
+	<JobDef>
+		<defName>BFARInstallCatheter</defName>
+		<driverClass>BadForAReason.JobDriver_InstallCatheter</driverClass>
+		<reportString>installing catheter in TargetA</reportString>
+	</JobDef>
+	
 </Defs>
