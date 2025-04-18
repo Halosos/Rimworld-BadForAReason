@@ -12,7 +12,7 @@ using DubsBadHygiene;
 
 namespace BadForAReason 
 {
-    public abstract class ThoughtWorker_HaveCatheter : ThoughtWorker
+    public class ThoughtWorker_HaveCatheter : ThoughtWorker
     {
         protected override ThoughtState CurrentStateInternal(Pawn pawn)
         {

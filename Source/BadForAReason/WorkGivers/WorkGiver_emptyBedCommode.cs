@@ -18,8 +18,13 @@ namespace BadForAReason
 
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
+            
+            IEnumerable<CompSewageHandler> enumerable = pawn.Map.PipeNet().PipeNets.SelectMany((PlumbingNet x) => x.Sewers); 
+            
             if (def.workType == WorkTypeDefOf.Warden)
             {
+                
+                
                 foreach (Thing item in pawn.Map.listerThings.ThingsOfDef(BFARDef.BFARBedCommode))
                 {
                     if (item is Building_BedCommode wardenBuilding_BedCommode)
@@ -30,8 +35,6 @@ namespace BadForAReason
                 }
                 yield break;
             }
-
-            IEnumerable<CompSewageHandler> enumerable = pawn.Map.PipeNet().PipeNets.SelectMany((PlumbingNet x) => x.Sewers); 
             
             foreach (Thing item2 in pawn.Map.listerThings.ThingsOfDef(BFARDef.BFARBedCommode))
             {

@@ -15,11 +15,11 @@ namespace BadForAReason
 {
     public class JobDriver_InstallCatheter : JobDriver_TendPatient
     {
-	    private bool usesMedicine;
+	    //private bool usesMedicine;
 		
 	    //private PathEndMode pathEndMode;
 
-	    
+
 	    protected override IEnumerable<Toil> MakeNewToils()
 	    {
 		    this.FailOnDespawnedNullOrForbidden(TargetIndex.A);
@@ -53,7 +53,10 @@ namespace BadForAReason
 			});
 			this.FailOnAggroMentalState(TargetIndex.A);
 			Toil reserveMedicine = null;
-			Toil gotoToil = Toils_Goto.GotoThing(TargetIndex.A, pathEndMode);
+			Toil gotoToil = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
+			
+			bool usesMedicine = MedicineUsed != null;
+			
 			if (usesMedicine)
 			{
 				List<Toil> list = CollectMedicineToils(pawn, Deliveree, job, gotoToil, out reserveMedicine);
@@ -71,7 +74,7 @@ namespace BadForAReason
 			}
 			else
 			{
-				waitToil = Toils_General.WaitWith_NewTemp(TargetIndex.A, ticks, useProgressBar: false, maintainPosture: true, maintainSleep: false, TargetIndex.A, pathEndMode);
+				waitToil = Toils_General.WaitWith_NewTemp(TargetIndex.A, ticks, useProgressBar: false, maintainPosture: true, maintainSleep: false, TargetIndex.A);
 				waitToil.AddFinishAction(delegate
 				{
 					if (Deliveree != null && Deliveree != pawn && Deliveree.CurJob != null && (Deliveree.CurJob.def == JobDefOf.Wait || Deliveree.CurJob.def == JobDefOf.Wait_MaintainPosture))
@@ -94,7 +97,7 @@ namespace BadForAReason
 					pawn.rotationTracker.FaceTarget(Deliveree);
 				}
 			};
-			waitToil.FailOn(() => pawn != Deliveree && !pawn.CanReachImmediate(Deliveree.SpawnedParentOrMe, pathEndMode));
+			waitToil.FailOn(() => pawn != Deliveree && !pawn.CanReachImmediate(Deliveree.SpawnedParentOrMe, PathEndMode.Touch));
 			yield return Toils_Jump.JumpIf(waitToil, () => !usesMedicine || !IsMedicineInDoctorInventory);
 			yield return Toils_Tend.PickupMedicine(TargetIndex.B, Deliveree).FailOnDestroyedOrNull(TargetIndex.B);
 			yield return waitToil;

@@ -17,7 +17,7 @@ namespace BadForAReason
         ThoughtDef memoryDef = DefDatabase<ThoughtDef>.GetNamed("BFARHadCatheter");
         
         
-        public void PostAdd(DamageInfo? dinfo)
+        public override void PostAdd(DamageInfo? dinfo)
         {
             pawn.needs.mood.thoughts.memories.RemoveMemoriesOfDef(memoryDef);
             MapComponent_CatheterCache cache = pawn.Map.GetComponent<MapComponent_CatheterCache>();

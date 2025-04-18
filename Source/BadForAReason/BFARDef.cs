@@ -18,6 +18,8 @@ namespace BadForAReason
         public static ThingDef BFARBedCommode;
         
         public static JobDef BFAREmptyBedCommode;
+
+        public static JobDef BFARInstallCatheter;
         
         public static HediffDef BFARInstalledCatheter;
         
