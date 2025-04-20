@@ -22,7 +22,7 @@ namespace BadForAReason
 
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            
+            Log.Message("PotentialWorkThingsGlobal called: " + pawn);
             
             cache = pawn.Map.GetComponent<MapComponent_CatheterCache>();
             
@@ -33,9 +33,11 @@ namespace BadForAReason
                 {
                     if (eligiblePawn != null && !eligiblePawn.Dead && !eligiblePawn.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
                     {
+                        Log.Message("Eligible pawn set: " + eligiblePawn);
                         yield return eligiblePawn;
                     }
                 }
+                
             }
         }
         
@@ -48,14 +50,16 @@ namespace BadForAReason
         {
             if (cache == null || cache.EligiblePawns.Count == 0)
             {
+                Log.Message("Should skip returned: true");
                 return true;
             }
-            
+            Log.Message("Should skip returned: " + pawn + forced);
             return base.ShouldSkip(pawn, forced);
         }
         
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
         {
+            Log.Message("HasJobOnThing called");
             if (!(t is Pawn eligiblePawn))
             {
                 return false;
@@ -79,9 +83,10 @@ namespace BadForAReason
 
             if (facility == null || !facility.LinkedBuildings.OfType<Building_CatheterMachine>().Any())
             {
+                Log.Message("HasJobOnThing: false");
                 return false;
             }
-
+            Log.Message("HasJobOnThing: true");
             return true;
         }
         
