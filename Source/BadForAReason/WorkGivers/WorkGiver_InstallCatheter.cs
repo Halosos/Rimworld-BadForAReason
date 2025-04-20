@@ -85,6 +85,19 @@ namespace BadForAReason
             return true;
         }
         
-        
+        public override Job JobOnThing(Pawn pawn, Thing t, bool forced = false)
+        {
+            Log.Message("JobOnThing called. Thing is: " + t.ToString());
+            if (t is Pawn target)
+            {
+                if (!target.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
+                {
+                    Log.Message("Source: " + pawn);
+                    Log.Message("Target: " + target);
+                    return JobMaker.MakeJob(BFARDef.BFARInstallCatheter, t);
+                }
+            }
+            return null;
+        }
     }
 }
