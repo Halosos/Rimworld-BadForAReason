@@ -68,16 +68,24 @@ namespace BadForAReason
         
         public override void TickRare()
         {
+            Log.Message("Ticking catheter machine");
+
+            foreach (Pawn tpawn in cache.EligiblePawns)
+            {
+                Log.Message("pawns in cache: " + tpawn);
+            }
             
             Thing linkedThing = facility.LinkedBuildings.FirstOrDefault();
-
+            
             if (!power.PowerOn || !pipe.pipeNet.Sewers.Any(h => h.parent != this) || blockage.blocked)
             {
+                Log.Message("No power or plumbing");
                 return;
             }
             
             if (!(linkedThing is Building_Bed bed && bed.CurOccupants.Count() != 0))
             {
+                Log.Message("Not linked to bed");
                 return;
             }
             
@@ -103,8 +111,10 @@ namespace BadForAReason
                 {
                     return;
                 }
+                Log.Message("Linked pawn: " + targetPawn);
                 if (returnEligibility(targetPawn))
                 {
+                    Log.Message("Pawn added to cache: " + targetPawn);
                     cache.Add(targetPawn);
                 }
             }
@@ -203,9 +213,9 @@ namespace BadForAReason
             {
                 stringBuilder.AppendLine(Translator.Translate("BlockedDrain"));
             }
-            if (pipe.pipeNet.Sewers.Any(h => h.parent != this))
+            if (!pipe.pipeNet.Sewers.Any(h => h.parent != this))
             {
-                stringBuilder.AppendLine(Translator.Translate("MustBePlumbing"));
+                stringBuilder.AppendLine(Translator.Translate("RequiresPlumbing"));
             }
             return GenText.TrimEndNewlines(stringBuilder.ToString());
         }

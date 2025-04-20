@@ -37,7 +37,7 @@
 		<defName>BFARInstallCatheter</defName>
 		<label>Install catheter</label>
 		<giverClass>BadForAReason.WorkGiver_InstallCatheter</giverClass>
-		<workType>Medicine</workType>
+		<workType>Doctor</workType>
 		<verb>install catheter</verb>
 		<gerund>installing catheter</gerund>
 		<priorityInType>100</priorityInType>

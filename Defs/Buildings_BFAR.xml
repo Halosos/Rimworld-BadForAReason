@@ -167,10 +167,14 @@
 		</building>
 		
 		<placeWorkers>
-			<li>BadForAReason.PlaceWorker_MustBeAdjacentToBed</li>
+			<li>PlaceWorker_ShowFacilitiesConnections</li>
 		</placeWorkers>
 		
+		<minifiedDef>MinifiedThing</minifiedDef>
+		
 		<designationCategory>Hygiene</designationCategory>
+		
+		<tickerType>Rare</tickerType>
 		
 	</ThingDef>
 	

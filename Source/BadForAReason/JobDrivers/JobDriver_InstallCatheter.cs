@@ -15,10 +15,6 @@ namespace BadForAReason
 {
     public class JobDriver_InstallCatheter : JobDriver_TendPatient
     {
-	    //private bool usesMedicine;
-		
-	    //private PathEndMode pathEndMode;
-
 
 	    protected override IEnumerable<Toil> MakeNewToils()
 	    {
