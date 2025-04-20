@@ -46,7 +46,7 @@ namespace BadForAReason
             return Danger.Deadly;
         }
         
-        public override bool ShouldSkip(Pawn pawn, bool forced = false)
+        public override bool ShouldSkip(Pawn pawn, bool forced = false) // TODO: THIS IS BORK
         {
             if (cache == null || cache.EligiblePawns.Count == 0)
             {
