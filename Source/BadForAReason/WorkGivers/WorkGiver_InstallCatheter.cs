@@ -17,12 +17,9 @@ namespace BadForAReason
         private MapComponent_CatheterCache cache;
         
         public override PathEndMode PathEndMode => PathEndMode.Touch;
-
         
-
         public override IEnumerable<Thing> PotentialWorkThingsGlobal(Pawn pawn)
         {
-            Log.Message("PotentialWorkThingsGlobal called: " + pawn);
             
             cache = pawn.Map.GetComponent<MapComponent_CatheterCache>();
             
@@ -33,13 +30,14 @@ namespace BadForAReason
                 {
                     if (eligiblePawn != null && !eligiblePawn.Dead && !eligiblePawn.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
                     {
-                        Log.Message("Eligible pawn set: " + eligiblePawn);
                         yield return eligiblePawn;
                     }
                 }
                 
             }
         }
+        
+
         
         public override Danger MaxPathDanger(Pawn pawn)
         {
@@ -48,13 +46,15 @@ namespace BadForAReason
         
         public override bool ShouldSkip(Pawn pawn, bool forced = false) // TODO: THIS IS BORK
         {
+            Log.Message("Starting should skip");
+            
             if (cache == null || cache.EligiblePawns.Count == 0)
             {
                 Log.Message("Should skip returned: true");
                 return true;
             }
-            Log.Message("Should skip returned: " + pawn + forced);
-            return base.ShouldSkip(pawn, forced);
+            Log.Message("[ShouldSkip] Possibly skipped");
+            return false;
         }
         
         public override bool HasJobOnThing(Pawn pawn, Thing t, bool forced = false)
@@ -62,31 +62,35 @@ namespace BadForAReason
             Log.Message("HasJobOnThing called");
             if (!(t is Pawn eligiblePawn))
             {
+                Log.Message("!(t is Pawn eligiblePawn): true");
                 return false;
             }
             if (!eligiblePawn.InBed())
             {
+                Log.Message("!eligiblePawn.InBed(): true");
                 return false;
             }
-            if (!eligiblePawn.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
+            if (eligiblePawn.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
             {
+                Log.Message("Has catheter already");
                 return false;
             }
-            Thing bed = eligiblePawn.CurrentBed();
+            Building_Bed bed = eligiblePawn.CurrentBed();
 
             if (bed == null)
             {
+                Log.Message("Bed is null");
                 return false;
             }
             
-            var facility = bed.TryGetComp<CompFacility>();
-
-            if (facility == null || !facility.LinkedBuildings.OfType<Building_CatheterMachine>().Any())
+            if (!HelperMethods.IsBedWithCatheter(bed, eligiblePawn.Map))
             {
-                Log.Message("HasJobOnThing: false");
+                Log.Message("No catheter linked to bed");
                 return false;
             }
             Log.Message("HasJobOnThing: true");
+
+
             return true;
         }
         
@@ -95,10 +99,11 @@ namespace BadForAReason
             Log.Message("JobOnThing called. Thing is: " + t.ToString());
             if (t is Pawn target)
             {
+                Log.Message("Target is: " + target);
+                
                 if (!target.health.hediffSet.HasHediff(BFARDef.BFARInstalledCatheter))
                 {
-                    Log.Message("Source: " + pawn);
-                    Log.Message("Target: " + target);
+                    Log.Message("Target does not have catheter. Call job.");
                     return JobMaker.MakeJob(BFARDef.BFARInstallCatheter, t);
                 }
             }

@@ -51,6 +51,21 @@ namespace BadForAReason
                     
             }
         }
+
+        public static bool IsBedWithCatheter(Building_Bed bed, Map map)
+        {
+            foreach (var machine in map.listerBuildings.AllBuildingsColonistOfClass<Building_CatheterMachine>())
+            {
+                var fac = machine.TryGetComp<CompFacility>();
+                if (fac != null && fac.LinkedBuildings.Contains(bed))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        
         
     }
 }

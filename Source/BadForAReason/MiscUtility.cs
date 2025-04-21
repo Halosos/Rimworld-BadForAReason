@@ -98,6 +98,7 @@ namespace BadForAReason
         {
             if (pawn != null && !eligiblePawns.Contains(pawn))
             {
+                Log.Message("Adding to eligible list: " + pawn);
                 eligiblePawns.Add(pawn);
             }
         }
@@ -109,5 +110,5 @@ namespace BadForAReason
             
         public bool Contains(Pawn pawn) => eligiblePawns.Contains(pawn);
     }
-    
+
 }
